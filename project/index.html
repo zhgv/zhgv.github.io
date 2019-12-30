@@ -10,7 +10,7 @@
   
   <title>
     
-      Hexo
+      Project | Hexo
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -152,71 +152,54 @@
 </header>
 
     <div id="article-banner">
-  <h2>Archives</h2>
-  <p class="post-date">文章归档</p>
+  <h2>Projects</h2>
+  <p class="post-date">开源项目</p>
 </div>
-<main class="app-body" id="archives">
-  
-  
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2019
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/2019/12/29/hello-world/" class="archive-title">Hello World</a>
-        <p class="archive-date">12-29</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2019/02/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%9D%A1/" class="archive-title">微信小程序自定义导航条</a>
-        <p class="archive-date">02-04</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2019/01/21/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E2%80%94%E2%80%94Card%E5%8D%A1%E7%89%87%E7%B1%BB%E8%AE%BE%E8%AE%A1/" class="archive-title">微信小程序——Card卡片设计</a>
-        <p class="archive-date">01-21</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2019/01/16/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%88%E4%B8%80%E8%A8%80API%E5%AD%A6%E4%B9%A0%EF%BC%89/" class="archive-title">微信小程序（一言API学习）</a>
-        <p class="archive-date">01-16</p>
-      </div>
-    
-  </div>
-</section>
-  
-    <section class="time-section">
-  <h1 class="section-year">
-    2018
-  </h1>
-  <div class="section-list">
-    
-    
-      <div class="section-list-item">
-        <a href="/2018/12/08/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E4%BE%A7%E8%BE%B9%E6%A0%8F%E6%BB%91%E5%8A%A8/" class="archive-title">小程序侧边栏滑动</a>
-        <p class="archive-date">12-08</p>
-      </div>
-    
-      <div class="section-list-item">
-        <a href="/2018/11/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="archive-title">我的第一篇测试文章</a>
-        <p class="archive-date">11-14</p>
-      </div>
-    
-  </div>
-</section>
-  
+<main class="app-body project-app">
+  <div class="card-container" id="all-project"></div>
 </main>
-
 <script>
-  (function () {
-    var url = 'http://zhgv.cn/archives/2019/02/index.html';
+  (function() {
+    var url = 'http://zhgv.cn/project/index.html';
     $('#article-banner').geopattern(url);
-    $('.header').removeClass('fixed-header');
-  })();
+    $('.header').removeClass('fixed-header')
+    $.ajax({
+      headers: {
+        Accept: 'application/vnd.github.v3.raw'
+      },
+      type: 'get',
+      url: 'https://api.github.com/users/yanm1ng/repos',
+      success: function (data) {
+        var repos = data.sort(function(a, b) {
+          return (b.stargazers_count - a.stargazers_count)
+        }).slice(0, 6)
+        var cardHtml = repos.map(function(item) {
+          var description = item.description || ""
+          if (description.replace(/[\u0391-\uFFE5]/g, "aa").length > 72) {
+            description = description.slice(0, 72) + '...'
+          }
+          return (
+            '<section class="project-card">' + 
+              '<a class="card-wrap" href="'+ item.html_url +'" target="_blank">' +
+                '<div class="card-header" data-name="'+ item.name +'"></div>' +
+                '<h3 class="card-title">' + item.name + '</h3>' +
+                '<p class="card-description">' + description + '</p>' +
+                '<div class="card-footer">' +
+                  '<span><i class="fa fa-star"></i>'+ item.stargazers_count +'</span>' +
+                  '<span><i class="fa fa-code-fork"></i>' + item.forks_count +'</span>' +
+                '</div>' +
+              '</a>' +
+            '</section>'
+          )
+        }).join('')
+        $('#all-project').html(cardHtml)
+        $('.card-header').each(function() {
+          var name = $(this).data('name');
+          $(this).geopattern(name);
+        })
+      }
+    });
+  })()
 </script>
     <div class="scroll-top">
   <span class="arrow-icon"></span>

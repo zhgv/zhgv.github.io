@@ -1,727 +1,421 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html>
+  <head>
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+  <meta name="description" content="yanm1ng&#39;s blog">
+  <meta name="keyword" content="hexo-theme, vuejs">
+  
+    <link rel="shortcut icon" href="/css/images/logo.png">
+  
+  <title>
+    
+      微信小程序自定义导航条 | Hexo
+    
+  </title>
+  <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.css" rel="stylesheet">
+  <link href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/tomorrow.min.css" rel="stylesheet">
+  
+<link rel="stylesheet" href="/css/style.css">
 
   
-<head>
-  <meta charset="utf-8">
-  <meta name="author" content="董沅鑫, yuanxin.me@gmail.com" />
-  
-  
-  
-  <title>微信小程序自定义导航条 | Hexo</title>
-
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+<link rel="stylesheet" href="/css/plugins/gitment.css">
 
   
-    <meta name="keywords" content="微信小程序,微信小程序,导航条," />
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/geopattern/1.2.3/js/geopattern.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/nprogress/0.2.0/nprogress.min.js"></script>
   
-
-  <script>
-    console.log('\n%c Hexo-theme-bmw v4.0 ' + '%c 🎉 https://github.com/dongyuanxin/theme-bmw 🎉\n' + '\n%c View demo online ' + '%c 🔍 https://godbmw.com/ 🔍  \n' , 'color: #fadfa3; background: #030307; padding:3px 0;', '', 'color: #fadfa3; background: #030307; padding:3px 0;', '');
-  </script>
-
-  
+    
+<script src="/js/qrious.js"></script>
 
   
+  
+    
+<script src="/js/gitment.js"></script>
 
   
-    <link rel="icon" href="/images/favicon.ico">
-    <link rel="apple-touch-icon" href="/images/touch-icon.png">
+  
+  
+    <!-- MathJax support START -->
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <!-- MathJax support END -->
   
 
-  <link href="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.css" rel="stylesheet">
-  
-<link rel="stylesheet" href="/css/base.css">
-<link rel="stylesheet" href="/icon/iconfont.css">
-<link rel="stylesheet" href="/css/github-markdown.css">
-<link rel="stylesheet" href="/css/highlight.css">
-
-
-  
-<script src="/js/util.js"></script>
-<script src="/js/valine.min.js"></script>
-
-
-  
-
-  
-    <link href="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.css" rel="stylesheet">
-    <script src="https://cdn.bootcss.com/aplayer/1.10.1/APlayer.min.js" async></script>
-  
-
-  
-    <link href="https://cdn.bootcss.com/social-share.js/1.0.16/css/share.min.css" rel="stylesheet">
-  
-  
-  <script src="//cdn.bootcss.com/jquery/3.3.1/jquery.min.js" async></script>
-  
-  
-    <script src="//cdn.jsdelivr.net/npm/leancloud-storage@3.11.0/dist/av-min.js"></script>
-  
 
 <meta name="generator" content="Hexo 4.2.0"></head>
-
-  <body>
-
-    
-
-    <div id="app">
-
-      <div class="header-wrap">
-  <header>
-    <div class="site-brand">
-      <div class="site-title">
-        <a href="/">GODBMW.com</a>
-      </div>
-    </div>
-    <nav class="site-navigation">
-      <ul class="nav-menu">
-      
-        <li class="nav-item" data-path="/">
-          
-            <a 
-              href="/"
-              target="_self"
-            >
-              主页
-            </a>
-          
-        </li>
-      
-        <li class="nav-item" data-path="/archives/">
-          
-            <a 
-              href="/archives/"
-              target="_self"
-            >
-              归档
-            </a>
-          
-        </li>
-      
-        <li class="nav-item" data-path="/categories/">
-          
-            <a 
-              href="/categories/"
-              target="_self"
-            >
-              分类
-            </a>
-          
-        </li>
-      
-        <li class="nav-item" data-path="/tags/">
-          
-            <a 
-              href="/tags/"
-              target="_self"
-            >
-              标签
-            </a>
-          
-        </li>
-      
-        <li class="nav-item" data-path="/friends/">
-          
-            <a 
-              href="/friends/"
-              target="_self"
-            >
-              友链
-            </a>
-          
-        </li>
-      
-        <li class="nav-item" data-path="/about/">
-          
-            <a 
-              href="/about/"
-              target="_self"
-            >
-              关于
-            </a>
-          
-        </li>
-      
-        <li class="nav-item" data-path="">
-          
-            <a href="javascript:void(0);" v-else>抓到我</a>
-            <ul class="nav-menu--dropdown">
-              
-                <li>
-                  <a 
-                    href="https://github.com/dongyuanxin" 
-                    target="_blank"
-                  >
-                    Github
-                  </a>
-                </li>
-              
-                <li>
-                  <a 
-                    href="https://www.zhihu.com/people/godbmw/activities" 
-                    target="_blank"
-                  >
-                    知乎
-                  </a>
-                </li>
-              
-            </ul>
-          
-        </li>
-      
-      </ul>
-    </nav>
-    <i class="iconfont icon-menu"></i>
-  </header>
+<div class="wechat-share">
+  <img src="/css/images/logo.png" />
 </div>
 
-<script>
-  let links = document.querySelectorAll('.nav-item');
-  for(let link of links){
-    let childrenLink = link.querySelector('ul');
-    link.addEventListener('mouseenter', () => {
-      if(childrenLink) {
-        childrenLink.className = "nav-menu--dropdown active";
-      }
-    })
-    link.addEventListener('mouseleave', () => {
-      if(childrenLink) {
-        childrenLink.className = "nav-menu--dropdown";
-      }
-    })
-  }
-  let rootRealPath = getRealPath(window.location.pathname, true);
-  for(let link of links) {
-    let linkPath = link.getAttribute("data-path");
-    if(linkPath && getRealPath(linkPath, true) === rootRealPath) {
-      link.className = "nav-item hover";
-    }
-  }
-
-  let iconMenu = document.querySelector("i.iconfont.icon-menu"),
-    iconMenuClicked = false;
-  let navDOM = document.querySelector("nav.site-navigation");
-  iconMenu.addEventListener("click", () => {
-    iconMenuClicked 
-      ? navDOM.className = "site-navigation active"
-      : navDOM.className = "site-navigation";
-    iconMenuClicked = !iconMenuClicked;
-  })
-</script>
-
+  <body>
+    <header class="header fixed-header">
+  <div class="header-container">
+    <a class="home-link" href="/">
+      <div class="logo"></div>
+      <span>Hexo</span>
+    </a>
+    <ul class="right-list">
       
-
-
-
-
-
-
-
-
-<div class="container post-index">
-
-  
-
-<div class="post">
-  <h1 class="article-title">
-    <span>微信小程序自定义导航条</span>
-  </h1>
-  <div class="article-top-meta">
-    <span>
-      发布 : 
-      2019-02-04
-    </span>
-    
-      <span>
-        分类 : 
-          <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
-            微信小程序
-          </a>
-      </span>
-    
-    
-      <span>
-        浏览 : <span class="article-timer" data-identity="微信小程序自定义导航条"></span>
-      </span>
-    
+        <li class="list-item">
+          
+            <a href="/" class="item-link">Home</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/tags/" class="item-link">Tags</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/archives/" class="item-link">Archives</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/project/" class="item-link">Projects</a>
+          
+        </li>
+      
+        <li class="list-item">
+          
+            <a href="/about/" class="item-link">About</a>
+          
+        </li>
+      
+    </ul>
+    <div class="menu">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </div>
+    <div class="menu-mask">
+      <ul class="menu-list">
+        
+          <li class="menu-item">
+            
+              <a href="/" class="menu-link">Home</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/tags/" class="menu-link">Tags</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/archives/" class="menu-link">Archives</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/project/" class="menu-link">Projects</a>
+            
+          </li>
+        
+          <li class="menu-item">
+            
+              <a href="/about/" class="menu-link">About</a>
+            
+          </li>
+        
+      </ul>
+    </div>
   </div>
+</header>
 
-  
-
-  <div class="article-content">
-    <div class="markdown-body">
-      <h3 id="官网说明"><a href="#官网说明" class="headerlink" title="官网说明"></a>官网说明</h3><blockquote>
+    <div id="article-banner">
+  <h2>微信小程序自定义导航条</h2>
+  <p class="post-date">2019-02-04</p>
+  <div class="arrow-down">
+    <a href="javascript:;"></a>
+  </div>
+</div>
+<main class="app-body flex-box">
+  <!-- Article START -->
+  <article class="post-article">
+    <section class="markdown-content"><h3 id="官网说明"><a href="#官网说明" class="headerlink" title="官网说明"></a>官网说明</h3><blockquote>
 <p>快速直达链接：<a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.showNavigationBarLoading.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/wx.showNavigationBarLoading.html</a></p>
 </blockquote>
 <h3 id="导航配置说明"><a href="#导航配置说明" class="headerlink" title="导航配置说明"></a>导航配置说明</h3><p><img src="https://cdn.pic.xgblack.cn/2019/02/12/5c62946fbcb23.png" alt="peizhi.png"></p>
 <h3 id="自定义导航栏样式"><a href="#自定义导航栏样式" class="headerlink" title="自定义导航栏样式"></a>自定义导航栏样式</h3><h4 id="预览图"><a href="#预览图" class="headerlink" title="预览图"></a>预览图</h4><p><img src="https://cdn.pic.xgblack.cn/2019/02/12/5c6291a81f0ac.png" alt="tu.png"></p>
 <h4 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h4><p><strong>App.js</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">  onLaunch: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    wx.getSystemInfo(&#123;</span><br><span class="line">      success: <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.globalData.CustomBar = e.platform == <span class="string">'android'</span> ? e.statusBarHeight + <span class="number">50</span> : e.statusBarHeight + <span class="number">45</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  globalData: &#123;&#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">  onLaunch: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    wx.getSystemInfo(&#123;</span><br><span class="line">      success: <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.globalData.CustomBar = e.platform == <span class="string">'android'</span> ? e.statusBarHeight + <span class="number">50</span> : e.statusBarHeight + <span class="number">45</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  globalData: &#123;&#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
 <p><strong>app.json</strong></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"window": &#123;</span><br><span class="line">  "navigationStyle": "custom"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight"><table><tr><td class="code"><pre><span class="line">"window": &#123;</span><br><span class="line">  "navigationStyle": "custom"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h4 id="页面配置"><a href="#页面配置" class="headerlink" title="页面配置"></a>页面配置</h4><blockquote>
 <p>每一个小程序页面也可以使用.json文件来对本页面的窗口表现进行配置。<br>页面的配置只能设置 app.json 中部分 window 配置项的内容，页面中配置项会覆盖 app.json 的 window 中相同的配置项。</p>
 </blockquote>
 <p><strong>index.js</strong></p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = getApp()</span><br><span class="line">Page(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">    CustomBar: app.globalData.CustomBar,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="keyword">var</span> app = getApp()</span><br><span class="line">Page(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">    CustomBar: app.globalData.CustomBar,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
 <p><strong>index.wxml</strong></p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">'/images/7.jpg'</span> <span class="attr">class</span>=<span class="string">'png'</span> <span class="attr">style</span>=<span class="string">'width:100%;height:486rpx'</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">'/images/7.jpg'</span> <span class="attr">class</span>=<span class="string">'png'</span> <span class="attr">style</span>=<span class="string">'width:100%;height:486rpx'</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <h3 id="普通导航栏样式"><a href="#普通导航栏样式" class="headerlink" title="普通导航栏样式"></a>普通导航栏样式</h3><h3 id="预览图-1"><a href="#预览图-1" class="headerlink" title="预览图"></a>预览图</h3><p><img src="https://cdn.pic.xgblack.cn/2019/02/12/5c629648693c5.png" alt="moren.png"></p>
 <blockquote>
 <p>注意：删除app.json中的自定义导航栏导航栏样式<code>navigationStyle： custom</code></p>
 </blockquote>
 <p><strong>index.json</strong></p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"navigationBarBackgroundColor"</span>: <span class="string">"#0b8457"</span>,</span><br><span class="line">  <span class="attr">"navigationBarTitleText"</span>: <span class="string">"导航标题"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"navigationBarBackgroundColor"</span>: <span class="string">"#0b8457"</span>,</span><br><span class="line">  <span class="attr">"navigationBarTitleText"</span>: <span class="string">"导航标题"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-
-    </div>
-  </div>
-  
-    <div class="copy-right">
-      <div class="markdown-body">
-        <blockquote>
-        
-        
-          本文作者 : GODBMW <br/>
-        
-        原文链接 : <a href="">http://zhgv.cn/2019/02/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%9D%A1/</a><br>
-        版权声明 : 本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
-        </blockquote>
-      </div>
-    </div>
-  
-  
-  
-    <div class="social-share"
-  style="margin-top: -2rem"
-  data-wechat-qrcode-title="<p>微信扫一扫</p>"
-  data-wechat-qrcode-helper="<p>微信右上角, 扫一扫分享</p>"
-   data-sites="qzone, qq, weibo, wechat, douban, google, facebook, twitter" 
-  
->
-  <span style="color: #6b7487; font-size: 1.4rem;">分享到: </span>
-</div>
-<script src="https://cdn.bootcss.com/social-share.js/1.0.16/js/social-share.min.js" async>
-  
-
-  
-    <div id="reward">
-  
-    <p id="reward-meta">知识 & 情怀 | 二者兼得</p>
-  
-  <button id="reward-btn">
+</section>
+    <!-- Tags START -->
     
-    <span>投食</span>
-  </button>
-  <div id="reward-qrcode">
-    
-      <div class="reward-qrcode--container">
-        <img class="qrcode-img" src="/images/wechat.png" alt="微信扫一扫, 向我投食">
-        <p class="qrcode-meta">微信扫一扫, 向我投食</p>
+      <div class="tags">
+        <span>Tags:</span>
+        
+  <a href="/tags#微信小程序" >
+    <span class="tag-code">微信小程序</span>
+  </a>
+
+  <a href="/tags#导航条" >
+    <span class="tag-code">导航条</span>
+  </a>
+
       </div>
     
-      <div class="reward-qrcode--container">
-        <img class="qrcode-img" src="/images/alipay.png" alt="支付宝扫一扫, 向我投食">
-        <p class="qrcode-meta">支付宝扫一扫, 向我投食</p>
-      </div>
+    <!-- Tags END -->
+    <!-- NAV START -->
+    
+  <div class="nav-container">
+    <!-- reverse left and right to put prev and next in a more logic postition -->
+    
+      <a class="nav-left" href="/2019/01/21/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E2%80%94%E2%80%94Card%E5%8D%A1%E7%89%87%E7%B1%BB%E8%AE%BE%E8%AE%A1/">
+        <span class="nav-arrow">← </span>
+        
+          微信小程序——Card卡片设计
+        
+      </a>
+    
+    
+      <a class="nav-right" href="/2019/12/29/hello-world/">
+        
+          Hello World
+        
+        <span class="nav-arrow"> →</span>
+      </a>
     
   </div>
 
-</div>
+    <!-- NAV END -->
+    <!-- 打赏 START -->
+    
+      <div class="money-like">
+        <div class="reward-btn">
+          赏
+          <span class="money-code">
+            <span class="alipay-code">
+              <div class="code-image"></div>
+              <b>使用支付宝打赏</b>
+            </span>
+            <span class="wechat-code">
+              <div class="code-image"></div>
+              <b>使用微信打赏</b>
+            </span>
+          </span>
+        </div>
+        <p class="notice">若你觉得我的文章对你有帮助，欢迎点击上方按钮对我打赏</p>
+      </div>
+    
+    <!-- 打赏 END -->
+    <!-- 二维码 START -->
+    
+      <div class="qrcode">
+        <canvas id="share-qrcode"></canvas>
+        <p class="notice">扫描二维码，分享此文章</p>
+      </div>
+    
+    <!-- 二维码 END -->
+    
+      <!-- Gitment START -->
+      <div id="comments"></div>
+      <!-- Gitment END -->
+    
+  </article>
+  <!-- Article END -->
+  <!-- Catalog START -->
+  
+    <aside class="catalog-container">
+  <div class="toc-main">
+    <strong class="toc-title">Catalog</strong>
+    
+      <ol class="toc-nav"><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#官网说明"><span class="toc-nav-text">官网说明</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#导航配置说明"><span class="toc-nav-text">导航配置说明</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#自定义导航栏样式"><span class="toc-nav-text">自定义导航栏样式</span></a><ol class="toc-nav-child"><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#预览图"><span class="toc-nav-text">预览图</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#全局配置"><span class="toc-nav-text">全局配置</span></a></li><li class="toc-nav-item toc-nav-level-4"><a class="toc-nav-link" href="#页面配置"><span class="toc-nav-text">页面配置</span></a></li></ol></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#普通导航栏样式"><span class="toc-nav-text">普通导航栏样式</span></a></li><li class="toc-nav-item toc-nav-level-3"><a class="toc-nav-link" href="#预览图-1"><span class="toc-nav-text">预览图</span></a></li></ol>
+    
+  </div>
+</aside>
+  
+  <!-- Catalog END -->
+</main>
 
 <script>
-  (() => {
-    let button = document.querySelector('#reward-btn'),
-      qrcode = document.querySelector('#reward-qrcode'),
-      display = false;
-    
-    button.addEventListener('click', () => {
-      qrcode.style.display = display ? 'none' : 'block'
-      display = !display
-    }, false)
-  })()
-</script>
-  
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-      <span>
-        
-          <i class="iconfont icon-06tags"></i>标签: 
-          
-          <span class="span--tag">
-            <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
-              #微信小程序
-            </a>
-          </span>
-          
-          <span class="span--tag">
-            <a href="/tags/%E5%AF%BC%E8%88%AA%E6%9D%A1/">
-              #导航条
-            </a>
-          </span>
-          
-        
-      </span>
-    </div>
-    <div class="article-meta pull-right">
-    </div>
-  </div>
-</div>
-
-
-  <aside id="sidebar">
-    <p id="sidebar-header"></p>
-    <ol id="sidebar-toc"></ol>
-  </aside>
-  <script async>setTimeout(generateToc, 10);</script>
-
-
-  <nav class="post-navigation">
-    
-      <div class="nav-pre">
-        <i class="iconfont icon-prev"></i>
-        上一篇:
-        <a href="/2019/01/21/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E2%80%94%E2%80%94Card%E5%8D%A1%E7%89%87%E7%B1%BB%E8%AE%BE%E8%AE%A1/" target="_self">微信小程序——Card卡片设计</a>
-      </div>
-    
-    
-      <div class="nav-next">
-        下一篇:
-        <a href="/2019/12/29/hello-world/" target="_self">Hello World</a>
-        <i class="iconfont icon-next"></i>
-      </div>
-    
-  </nav>
-
-  
-    <a href="#comment" class="comment-anchor"></a>
-<div class="comment-title"><i class="iconfont icon-footprint"></i> 留下足迹 <i class="iconfont icon-footprint"></i></div>
-<div id="vcomments"></div>
-
-<script defer>
-  if( true ) {
-    let path = getRealPath()
-    new Valine({
-      el: "#vcomments",
-      appId: "Hyq9wkH495DgNHWhDQCOfQSp-gzGzoHsz",
-      appKey: "WaR7nrzhliHj9aVwdQzkdlGd",
-      notify: false,
-      verify: false,
-      avatar: "robohash",
-      placeholder: "正确填写邮箱, 才能及时收到回复哦♪(^∇^*)",
-      path
-    });
-  }
-</script>
-   
-
-  
-    <script defer>
-const valineAPI = (() => {
-  try {
-    AV.init("Hyq9wkH495DgNHWhDQCOfQSp-gzGzoHsz", "WaR7nrzhliHj9aVwdQzkdlGd");
-  } catch(error) {}
-  const isExist = (identity) => {
-    identity = identity || getRealPath();
-    let query = new AV.Query('Timer');
-    return new Promise((resolve, reject) => {
-      query.equalTo("identity", identity);
-      query.find().then(results => {
-        resolve(results.length > 0);
-      }, error => reject(error));
-    })
-  }
-
-  const _get = (identity) => {
-    let query = null;
-    if(identity && identity instanceof Array){
-      let querys = [];
-      for(let i = 0; i < identity.length; ++i) {
-        querys[i] = new AV.Query('Timer');
-        querys[i].equalTo('identity', identity[i]);
-      }
-      query = AV.Query.or.apply(null ,querys);
+  (function () {
+    var url = 'http://zhgv.cn/2019/02/04/微信小程序自定义导航条/';
+    var banner = ''
+    if (banner !== '' && banner !== 'undefined' && banner !== 'null') {
+      $('#article-banner').css({
+        'background-image': 'url(' + banner + ')'
+      })
     } else {
-      identity = identity || getRealPath();
-      query = new AV.Query("Timer");
-      query.equalTo("identity", identity);
+      $('#article-banner').geopattern(url)
     }
+    $('.header').removeClass('fixed-header')
 
-    return new Promise((resolve, reject) => {
-      query.find()
-      .then(results => resolve(results))
-      .catch(error => reject(error))
+    // error image
+    $(".markdown-content img").on('error', function() {
+      $(this).attr('src', 'http://file.muyutech.com/error-img.png')
+      $(this).css({
+        'cursor': 'default'
+      })
     })
-  }
 
-  const create = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let Todo = AV.Object.extend('Timer');
-      let todo = new Todo();
-      todo.set("times", 1);
-      todo.set("identity", identity);
-      todo.save().then(res => resolve(true), error => reject(error));
-    })
-  }
+    // zoom image
+    $(".markdown-content img").on('click', function() {
+      var src = $(this).attr('src')
+      if (src !== 'http://file.muyutech.com/error-img.png') {
+        var imageW = $(this).width()
+        var imageH = $(this).height()
 
-  const update = (identity) => {
-    identity = identity || getRealPath();
-    return new Promise((resolve, reject) => {
-      let query = new AV.Query('Timer');
-      query.equalTo("identity", identity);
-      query.find().then(todos => {
-        todos.forEach(todo => {
-          todo.set("times", todo.attributes.times + 1);
-        });
-        return AV.Object.saveAll(todos);
-      }).then(todos => resolve(true), error => reject(error));
-    })
-  }
+        var zoom = ($(window).width() * 0.95 / imageW).toFixed(2)
+        zoom = zoom < 1 ? 1 : zoom
+        zoom = zoom > 2 ? 2 : zoom
+        var transY = (($(window).height() - imageH) / 2).toFixed(2)
 
-  return {
-    isExist,
-    _get,
-    update,
-    create
-  }
-})()
+        $('body').append('<div class="image-view-wrap"><div class="image-view-inner"><img src="'+ src +'" /></div></div>')
+        $('.image-view-wrap').addClass('wrap-active')
+        $('.image-view-wrap img').css({
+          'width': `${imageW}`,
+          'transform': `translate3d(0, ${transY}px, 0) scale3d(${zoom}, ${zoom}, 1)`
+        })
+        $('html').css('overflow', 'hidden')
 
-const calcAndWriteTimes = () => {
-  let isPost = true;
-
-  let timerAllDOM = document.querySelectorAll(".article-timer");
-
-  if(isPost) {
-    let identity = timerAllDOM[0].getAttribute("data-identity");
-    valineAPI.isExist(identity)
-    .then(exist => {
-      if(exist) {
-        return valineAPI.update(identity);
+        $('.image-view-wrap').on('click', function() {
+          $(this).remove()
+          $('html').attr('style', '')
+        })
       }
-      return new Promise(resolve => resolve(true));
     })
-    .then( succuess => valineAPI._get(identity))
-    .then( result => timerAllDOM[0].innerText = result[0].attributes.times)
-    .catch(error => console.log(error.message))
-    return ;
-  }
-
-  let timerDOMCache = {};
-
-  for(let timerDOM of timerAllDOM) {
-    let identity = timerDOM.getAttribute("data-identity");
-    if(timerDOMCache.hasOwnProperty(identity)){
-      timerDOMCache[identity].dom.push(timerDOM);
-    }else{
-      timerDOMCache[identity] = {
-        dom: [timerDOM],
-        times: undefined
-      };
-    }
-  }
-
-  let identities = Object.keys(timerDOMCache);
-  valineAPI._get(identities).then(results => {
-    for(let result of results) {
-      let {identity, times} = result.attributes;
-      timerDOMCache[identity].times = times;
-      timerDOMCache[identity].dom.map(item => item.innerText = times);
-    }
-    for(let identity of identities) {
-      if(timerDOMCache[identity].times){
-        continue;
-      }
-      timerDOMCache[identity].dom.map(item => item.innerText = 1);
-      valineAPI.create(identity);
-    }
-  }).catch(error => console.log(error.message))
-}
-
-if(true){
-  calcAndWriteTimes();
-}
+  })();
 </script>
-   
 
+
+  <script>
+    var qr = new QRious({
+      element: document.getElementById('share-qrcode'),
+      value: document.location.href
+    });
+  </script>
+
+
+
+  <script>
+    var gitmentConfig = "yanm1ng";
+    if (gitmentConfig !== 'undefined') {
+      var gitment = new Gitment({
+        id: "微信小程序自定义导航条",
+        owner: "yanm1ng",
+        repo: "yanm1ng.github.io",
+        oauth: {
+          client_id: "0f87e490e00ee3fd87ef",
+          client_secret: "4a9d2b148e7971c2201ad12131ce8bf8159ccd2e"
+        },
+        theme: {
+          render(state, instance) {
+            const container = document.createElement('div')
+            container.lang = "en-US"
+            container.className = 'gitment-container gitment-root-container'
+            container.appendChild(instance.renderHeader(state, instance))
+            container.appendChild(instance.renderEditor(state, instance))
+            container.appendChild(instance.renderComments(state, instance))
+            container.appendChild(instance.renderFooter(state, instance))
+            return container;
+          }
+        }
+      })
+      gitment.render(document.getElementById('comments'))
+    }
+  </script>
+
+
+
+
+    <div class="scroll-top">
+  <span class="arrow-icon"></span>
 </div>
-
-
-      <footer>
-  <p class="site-info">
-    博客已萌萌哒运行<span id="time-to-now"></span><span class="my-face">(●'◡'●)ﾉ♥</span>
+    <footer class="app-footer">
+  <p class="copyright">
+    &copy; 2019 | Proudly powered by <a href="https://hexo.io" target="_blank">Hexo</a>
     <br>
-    Theme - <a href="https://github.com/dongyuanxin/theme-bmw" target="_blank" rel="noopener">BMW</a> | Made With 💗 | Powered by <a href="https://godbmw.com/" target="_blank" rel="noopener">GodBMW</a>
-    <br>
-    
+    Theme by <a href="https://github.com/yanm1ng" target="_blank" rel="noopener">yanm1ng</a>
   </p>
 </footer>
 
-
-
 <script>
-const timeToNowDOM = document.querySelector("#time-to-now");
-const startTimestamp = new Date(2018, 1, 10).getTime();
-
-const updateTimeStr = () => {
-  let offset = parseInt(
-      (new Date().getTime() - startTimestamp) / 1000,
-      10
-    ),
-    day = Math.floor(offset / 86400),
-    hour = Math.floor((offset % 86400) / 3600),
-    minute = Math.floor(((offset % 86400) % 3600) / 60),
-    second = Math.floor(((offset % 86400) % 3600) % 60);
-  timeToNowDOM.innerHTML =
-    day + "天" + hour + "小时" + minute + "分钟" + second + "秒";
-  setTimeout(updateTimeStr, 500);
-}
-
-setTimeout(updateTimeStr, 500);
-</script>
-
-
-      <div class="back-to-top hidden">
-  <span>
-    <i class="iconfont icon-60"></i><span></span>%
-  </span>
-</div>
-
-<script>
-const updateIconToTop = percent => {
-  let dom = document.querySelector(".back-to-top span span");
-  dom.innerText = percent;
-  if(percent < 1) {
-    document.querySelector(".back-to-top").className = "back-to-top hidden";
-  } else {
-    document.querySelector(".back-to-top").className = "back-to-top";
+  function async(u, c) {
+    var d = document, t = 'script',
+      o = d.createElement(t),
+      s = d.getElementsByTagName(t)[0];
+    o.src = u;
+    if (c) { o.addEventListener('load', function (e) { c(null, e); }, false); }
+    s.parentNode.insertBefore(o, s);
   }
-}
-
-const handleScoll = () => {
-  let isRunning = false;
-  return () => {
-    if (isRunning) return;
-    isRunning = true;
-    window.requestAnimationFrame(timestamp => {
-      let scrollTop =
-          document.documentElement.scrollTop || document.body.scrollTop,
-        scrollHeight =
-          document.documentElement.scrollHeight ||
-          document.body.scrollHeight,
-        clientHeight =
-          document.documentElement.clientHeight ||
-          document.body.clientHeight;
-      isRunning = false;
-      if (scrollTop <= 1) {
-        updateIconToTop(0);
-        return;
-      }
-      if (scrollTop + clientHeight >= scrollHeight) {
-        updateIconToTop(100);
-      } else {
-        updateIconToTop(parseInt(
-          100 * scrollTop / (scrollHeight - clientHeight),
-          10
-        ));
-      }
-    });
-  };
-}
-
-const backToTop = () => {
-  let scrollTop =
-      document.documentElement.scrollTop || document.body.scrollTop,
-    delay = 10,
-    time = 200;
-  if (scrollTop <= 20) {
-    document.documentElement.scrollTop = 0;
-    document.body.scrollTop = 0;
-    return;
-  }
-  let step = Math.ceil(scrollTop * delay / time);
-  let timer = setInterval(() => {
-    scrollTop =
-      document.documentElement.scrollTop || document.body.scrollTop;
-    if (scrollTop - step <= 0) {
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      clearInterval(timer);
-    } else {
-      document.documentElement.scrollTop = scrollTop - step;
-      document.body.scrollTop = scrollTop - step;
-    }
-  }, delay);
-}
-
-document.addEventListener("scroll", handleScoll(), false);
-
-document.querySelector(".back-to-top").addEventListener("click", backToTop, false);
-
 </script>
-
-    </div>
-
-    
-      <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML" async></script>
 <script>
-  (() => {
-    const mathjaxConfig = {
-      showProcessingMessages: false, //关闭js加载过程信息
-      messageStyle: "none", //不显示信息
-      jax: ["input/TeX", "output/HTML-CSS"],
-      tex2jax: {
-        inlineMath: [["$", "$"], ["\\(", "\\)"]], //行内公式选择符
-        displayMath: [["$$", "$$"], ["\\[", "\\]"]], //段内公式选择符
-        skipTags: ["script", "noscript", "style", "textarea", "pre", "code", "a"] //避开某些标签
-      },
-      "HTML-CSS": {
-        availableFonts: ["STIX", "TeX"], //可选字体
-        showMathMenu: false //关闭右击菜单显示
-      }
-    }
-
-    let mathjaxInterval = setInterval(() => {
-      if(!window.MathJax){
-        return;
-      }
-      window.MathJax.Hub.Config(mathjaxConfig)
-      window.MathJax.Hub.Queue(["Typeset", MathJax.Hub, document.getElementById('app')])
-
-      clearInterval(mathjaxInterval)
-    }, 10)    
-  })()
+  async("//cdnjs.cloudflare.com/ajax/libs/fastclick/1.0.6/fastclick.min.js", function(){
+    FastClick.attach(document.body);
+  })
 </script>
-    
 
-    <script src="https://cdn.bootcss.com/fancybox/3.5.2/jquery.fancybox.min.js" async></script>
-<script async>
-  let fancyTimer = setInterval(function(){
-    if(!window.$){
-      return;
-    }
-    $(document).ready(function() {
-      $(".post img").each(function () {
-        if($(this).parent().get(0).tagName.toLowerCase() === "a") {
-          return;
-        }
-        // $(this).attr("data-fancybox", "gallery"); // if you add 'data-fancybox', img will display after showed
-        var element = document.createElement("a");
-        $(element).attr("data-fancybox", "gallery");
-        $(element).attr("href", $(this).attr("src"));
-        $(this).wrap(element);
-      });
-      
-      clearInterval(fancyTimer);
+<script>
+  var hasLine = 'false';
+  async("//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js", function(){
+    $('figure pre').each(function(i, block) {
+      var figure = $(this).parents('figure');
+      if (hasLine === 'false') {
+        figure.find('.gutter').hide();
+      }
+      var lang = figure.attr('class').split(' ')[1] || 'code';
+      var codeHtml = $(this).html();
+      var codeTag = document.createElement('code');
+      codeTag.className = lang;
+      codeTag.innerHTML = codeHtml;
+      $(this).attr('class', '').empty().html(codeTag);
+      figure.attr('data-lang', lang.toUpperCase());
+      hljs.highlightBlock(block);
     });
-  }, 10);
+  })
 </script>
+<!-- Baidu Tongji -->
 
-    
+
+<script src="/js/script.js"></script>
+
   </body>
-
 </html>
