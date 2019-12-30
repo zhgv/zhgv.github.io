@@ -8,12 +8,12 @@
   
   
   
-  <title>关于 | Hexo</title>
+  <title>微信小程序——Card卡片设计 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, theme-bmw" />
+    <meta name="keywords" content="微信小程序,Card卡片,微信小程序," />
   
 
   <script>
@@ -225,17 +225,24 @@
 
 <div class="post">
   <h1 class="article-title">
-    <span>about</span>
+    <span>微信小程序——Card卡片设计</span>
   </h1>
   <div class="article-top-meta">
     <span>
       发布 : 
-      2019-12-30
+      2019-01-21
     </span>
+    
+      <span>
+        分类 : 
+          <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            微信小程序
+          </a>
+      </span>
     
     
       <span>
-        浏览 : <span class="article-timer" data-identity="about"></span>
+        浏览 : <span class="article-timer" data-identity="微信小程序——Card卡片类设计"></span>
       </span>
     
   </div>
@@ -244,7 +251,36 @@
 
   <div class="article-content">
     <div class="markdown-body">
-      
+      <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p> 有时，我们在处理大量信息排版的时候，会很头疼。不妨采用Card卡片类排版。</p>
+<blockquote>
+<p>Card类的优点:</p>
+</blockquote>
+<ul>
+<li>信息清晰<ul>
+<li>简约</li>
+<li>多列表展示</li>
+</ul>
+</li>
+</ul>
+<h3 id="预览图"><a href="#预览图" class="headerlink" title="预览图"></a>预览图</h3><p><img src="https://raw.githubusercontent.com/zhgv/resource/master/blog/%5DYVYYVN%606@PA1DO@%5BHBEFMD.png" alt="avatar"></p>
+<h3 id="WXML代码"><a href="#WXML代码" class="headerlink" title="WXML代码"></a>WXML代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"> &lt;view class&#x3D;&#39;card  b-shadow&#39;&gt;</span><br><span class="line">    &lt;view class&#x3D;&#39;nearCard-fr&#39;&gt;</span><br><span class="line">       &lt;view&gt;日期：</span><br><span class="line">         &lt;text class&#x3D;&#39;c-green&#39;&gt;&#123;&#123;item.useDate&#125;&#125;&lt;&#x2F;text&gt;</span><br><span class="line">       &lt;&#x2F;view&gt;</span><br><span class="line">       &lt;view&gt;车型：</span><br><span class="line">         &lt;text class&#x3D;&#39;c-green&#39;&gt;&#123;&#123;item.cx&#125;&#125;&lt;&#x2F;text&gt;</span><br><span class="line">       &lt;&#x2F;view&gt;</span><br><span class="line">       &lt;view&gt;时长：</span><br><span class="line">         &lt;text class&#x3D;&#39;c-green&#39;&gt;&#123;&#123;item.time&#125;&#125;&lt;&#x2F;text&gt;</span><br><span class="line">       &lt;&#x2F;view&gt;</span><br><span class="line">       &lt;view&gt;费用：</span><br><span class="line">         &lt;text class&#x3D;&#39;c-green&#39;&gt;&#123;&#123;item.feiyong&#125;&#125;&lt;&#x2F;text&gt;</span><br><span class="line">       &lt;&#x2F;view&gt;</span><br><span class="line">    &lt;&#x2F;view&gt;</span><br><span class="line">&lt;&#x2F;view&gt;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>这里写的是网上复制过来的，预览图中的代码杂乱，就不一一展示了。实现的效果是一样的。</p>
+</blockquote>
+<h3 id="WXSS代码展示"><a href="#WXSS代码展示" class="headerlink" title="WXSS代码展示"></a>WXSS代码展示</h3> <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.card</span> &#123;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">95%</span>;</span><br><span class="line">  <span class="attribute">background-color</span>: <span class="number">#fff</span>;</span><br><span class="line">  <span class="attribute">margin</span>: <span class="number">20</span>rpx auto <span class="number">0</span>;</span><br><span class="line">  <span class="attribute">border-radius</span>: <span class="number">20</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.card-shadow</span> &#123;</span><br><span class="line">  <span class="attribute">box-shadow</span>: <span class="number">10</span>rpx <span class="number">10</span>rpx <span class="number">20</span>rpx <span class="number">#999</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.nearCard-fr</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">27</span>rpx;</span><br><span class="line">  <span class="attribute">line-height</span>: <span class="number">50</span>rpx;</span><br><span class="line">  <span class="attribute">width</span>: <span class="number">60%</span>;</span><br><span class="line">  <span class="attribute">margin-left</span>: <span class="number">10%</span>;</span><br><span class="line">  <span class="attribute">margin-top</span>: <span class="number">15</span>rpx;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#999</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-class">.nearCard-fr</span> <span class="selector-tag">text</span> &#123;</span><br><span class="line">  <span class="attribute">font-size</span>: <span class="number">22</span>rpx;</span><br><span class="line">&#125;</span><br><span class="line"><span class="selector-class">.c-green</span> &#123;</span><br><span class="line">  <span class="attribute">color</span>: <span class="number">#41aaa8</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p> <code>rpx</code>: 可以根据屏幕宽度进行自适应,微信小程序中特有的像素单位<br><code>box-shadow</code>: 属性向框添加一个或多个阴影。<br> 这里在 <a href="http://www.w3school.com" target="_blank" rel="noopener">www.w3school.com</a> 进行演示不同的阴影效果(注：html中对div元素的阴影，同样适用于微信小程序，只不过是对于view块状元素的添加阴影)</p>
+<blockquote>
+<p>示例：</p>
+</blockquote>
+<ul>
+<li>background-color: #fff;</li>
+<li>box-shadow: 10px 10px 20px #999;<br>( 下、左、右边阴影按顺序类推)<br><img src="https://raw.githubusercontent.com/zhgv/resource/master/blog/RXRD4TNB%60P_%7DM%5B%5B@Y%60_X%H2.png" alt="avatar"></li>
+</ul>
+<p>你还可以:</p>
+<ul>
+<li>更改阴影颜色<code>background-color</code></li>
+</ul>
+
     </div>
   </div>
   
@@ -255,7 +291,7 @@
         
           本文作者 : GODBMW <br/>
         
-        原文链接 : <a href="">http://zhgv.cn/about/index.html</a><br>
+        原文链接 : <a href="">http://zhgv.cn/2019/01/21/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E2%80%94%E2%80%94Card%E5%8D%A1%E7%89%87%E7%B1%BB%E8%AE%BE%E8%AE%A1/</a><br>
         版权声明 : 本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
         </blockquote>
       </div>
@@ -318,6 +354,21 @@
     <div class="article-meta pull-left">
       <span>
         
+          <i class="iconfont icon-06tags"></i>标签: 
+          
+          <span class="span--tag">
+            <a href="/tags/Card%E5%8D%A1%E7%89%87/">
+              #Card卡片
+            </a>
+          </span>
+          
+          <span class="span--tag">
+            <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+              #微信小程序
+            </a>
+          </span>
+          
+        
       </span>
     </div>
     <div class="article-meta pull-right">
@@ -335,6 +386,18 @@
 
   <nav class="post-navigation">
     
+      <div class="nav-pre">
+        <i class="iconfont icon-prev"></i>
+        上一篇:
+        <a href="/2019/01/16/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%EF%BC%88%E4%B8%80%E8%A8%80API%E5%AD%A6%E4%B9%A0%EF%BC%89/" target="_self">微信小程序（一言API学习）</a>
+      </div>
+    
+    
+      <div class="nav-next">
+        下一篇:
+        <a href="/2019/02/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%9D%A1/" target="_self">微信小程序自定义导航条</a>
+        <i class="iconfont icon-next"></i>
+      </div>
     
   </nav>
 
@@ -433,7 +496,7 @@ const valineAPI = (() => {
 })()
 
 const calcAndWriteTimes = () => {
-  let isPost = false;
+  let isPost = true;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
 

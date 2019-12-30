@@ -8,12 +8,12 @@
   
   
   
-  <title>关于 | Hexo</title>
+  <title>微信小程序自定义导航条 | Hexo</title>
 
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
   
-    <meta name="keywords" content="Hexo, theme-bmw" />
+    <meta name="keywords" content="微信小程序,微信小程序,导航条," />
   
 
   <script>
@@ -225,17 +225,24 @@
 
 <div class="post">
   <h1 class="article-title">
-    <span>about</span>
+    <span>微信小程序自定义导航条</span>
   </h1>
   <div class="article-top-meta">
     <span>
       发布 : 
-      2019-12-30
+      2019-02-04
     </span>
+    
+      <span>
+        分类 : 
+          <a href="/categories/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+            微信小程序
+          </a>
+      </span>
     
     
       <span>
-        浏览 : <span class="article-timer" data-identity="about"></span>
+        浏览 : <span class="article-timer" data-identity="微信小程序自定义导航条"></span>
       </span>
     
   </div>
@@ -244,7 +251,32 @@
 
   <div class="article-content">
     <div class="markdown-body">
-      
+      <h3 id="官网说明"><a href="#官网说明" class="headerlink" title="官网说明"></a>官网说明</h3><blockquote>
+<p>快速直达链接：<a href="https://developers.weixin.qq.com/miniprogram/dev/api/wx.showNavigationBarLoading.html" target="_blank" rel="noopener">https://developers.weixin.qq.com/miniprogram/dev/api/wx.showNavigationBarLoading.html</a></p>
+</blockquote>
+<h3 id="导航配置说明"><a href="#导航配置说明" class="headerlink" title="导航配置说明"></a>导航配置说明</h3><p><img src="https://cdn.pic.xgblack.cn/2019/02/12/5c62946fbcb23.png" alt="peizhi.png"></p>
+<h3 id="自定义导航栏样式"><a href="#自定义导航栏样式" class="headerlink" title="自定义导航栏样式"></a>自定义导航栏样式</h3><h4 id="预览图"><a href="#预览图" class="headerlink" title="预览图"></a>预览图</h4><p><img src="https://cdn.pic.xgblack.cn/2019/02/12/5c6291a81f0ac.png" alt="tu.png"></p>
+<h4 id="全局配置"><a href="#全局配置" class="headerlink" title="全局配置"></a>全局配置</h4><p><strong>App.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">App(&#123;</span><br><span class="line">  onLaunch: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    wx.getSystemInfo(&#123;</span><br><span class="line">      success: <span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">this</span>.globalData.CustomBar = e.platform == <span class="string">'android'</span> ? e.statusBarHeight + <span class="number">50</span> : e.statusBarHeight + <span class="number">45</span>;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br><span class="line">  &#125;,</span><br><span class="line">  globalData: &#123;&#125;,</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p><strong>app.json</strong></p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">"window": &#123;</span><br><span class="line">  "navigationStyle": "custom"</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="页面配置"><a href="#页面配置" class="headerlink" title="页面配置"></a>页面配置</h4><blockquote>
+<p>每一个小程序页面也可以使用.json文件来对本页面的窗口表现进行配置。<br>页面的配置只能设置 app.json 中部分 window 配置项的内容，页面中配置项会覆盖 app.json 的 window 中相同的配置项。</p>
+</blockquote>
+<p><strong>index.js</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = getApp()</span><br><span class="line">Page(&#123;</span><br><span class="line">  data:&#123;</span><br><span class="line">    CustomBar: app.globalData.CustomBar,</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p><strong>index.wxml</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">image</span> <span class="attr">src</span>=<span class="string">'/images/7.jpg'</span> <span class="attr">class</span>=<span class="string">'png'</span> <span class="attr">style</span>=<span class="string">'width:100%;height:486rpx'</span>&gt;</span><span class="tag">&lt;/<span class="name">image</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="普通导航栏样式"><a href="#普通导航栏样式" class="headerlink" title="普通导航栏样式"></a>普通导航栏样式</h3><h3 id="预览图-1"><a href="#预览图-1" class="headerlink" title="预览图"></a>预览图</h3><p><img src="https://cdn.pic.xgblack.cn/2019/02/12/5c629648693c5.png" alt="moren.png"></p>
+<blockquote>
+<p>注意：删除app.json中的自定义导航栏导航栏样式<code>navigationStyle： custom</code></p>
+</blockquote>
+<p><strong>index.json</strong></p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"navigationBarBackgroundColor"</span>: <span class="string">"#0b8457"</span>,</span><br><span class="line">  <span class="attr">"navigationBarTitleText"</span>: <span class="string">"导航标题"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+
     </div>
   </div>
   
@@ -255,7 +287,7 @@
         
           本文作者 : GODBMW <br/>
         
-        原文链接 : <a href="">http://zhgv.cn/about/index.html</a><br>
+        原文链接 : <a href="">http://zhgv.cn/2019/02/04/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E8%87%AA%E5%AE%9A%E4%B9%89%E5%AF%BC%E8%88%AA%E6%9D%A1/</a><br>
         版权声明 : 本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank" rel="noopener">CC BY-NC-SA 4.0</a> 许可协议。转载请注明出处！
         </blockquote>
       </div>
@@ -318,6 +350,21 @@
     <div class="article-meta pull-left">
       <span>
         
+          <i class="iconfont icon-06tags"></i>标签: 
+          
+          <span class="span--tag">
+            <a href="/tags/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F/">
+              #微信小程序
+            </a>
+          </span>
+          
+          <span class="span--tag">
+            <a href="/tags/%E5%AF%BC%E8%88%AA%E6%9D%A1/">
+              #导航条
+            </a>
+          </span>
+          
+        
       </span>
     </div>
     <div class="article-meta pull-right">
@@ -335,6 +382,18 @@
 
   <nav class="post-navigation">
     
+      <div class="nav-pre">
+        <i class="iconfont icon-prev"></i>
+        上一篇:
+        <a href="/2019/01/21/%E5%BE%AE%E4%BF%A1%E5%B0%8F%E7%A8%8B%E5%BA%8F%E2%80%94%E2%80%94Card%E5%8D%A1%E7%89%87%E7%B1%BB%E8%AE%BE%E8%AE%A1/" target="_self">微信小程序——Card卡片设计</a>
+      </div>
+    
+    
+      <div class="nav-next">
+        下一篇:
+        <a href="/2019/12/29/hello-world/" target="_self">Hello World</a>
+        <i class="iconfont icon-next"></i>
+      </div>
     
   </nav>
 
@@ -433,7 +492,7 @@ const valineAPI = (() => {
 })()
 
 const calcAndWriteTimes = () => {
-  let isPost = false;
+  let isPost = true;
 
   let timerAllDOM = document.querySelectorAll(".article-timer");
 
