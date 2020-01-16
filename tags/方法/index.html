@@ -10,7 +10,7 @@
   
   <title>
     
-      Tags | 信子君
+      信子君
     
   </title>
   <link href="//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
@@ -144,68 +144,50 @@
 </header>
 
     <div id="article-banner">
-  <h2>Tags</h2>
-  <p class="post-date">标签检索</p>
+  <h2>Archives</h2>
+  <p class="post-date">文章归档</p>
 </div>
-<main class="app-body">
-  <div id="tag-cloud">
+<main class="app-body" id="archives">
+  
+  
+  
+    <section class="time-section">
+  <h1 class="section-year">
+    2019
+  </h1>
+  <div class="section-list">
     
-      <a class="tag2" data-name="tag-Markdown">Markdown</a>
     
-      <a class="tag2" data-name="tag-计算属性">计算属性</a>
-    
-      <a class="tag2" data-name="tag-方法">方法</a>
+      <div class="section-list-item">
+        <a href="/2019/01/14/vue%E8%AE%A1%E7%AE%97%E5%B1%9E%E6%80%A7%E5%92%8C%E6%96%B9%E6%B3%95%E7%9A%84%E5%8C%BA%E5%88%AB/" class="archive-title">vue计算属性和方法的区别</a>
+        <p class="archive-date">01-14</p>
+      </div>
     
   </div>
+</section>
   
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-Markdown">Markdown</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2018/11/14/我的第一篇测试文章/">我的第一篇测试文章</a>
-          </li>
-        </ul>
-        
-    </div>
+    <section class="time-section">
+  <h1 class="section-year">
+    2018
+  </h1>
+  <div class="section-list">
     
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-计算属性">计算属性</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2019/01/14/vue计算属性和方法的区别/">vue计算属性和方法的区别</a>
-          </li>
-        </ul>
-        
-    </div>
     
-    <div class="tag-list">
-      <h3 class="tag-name" id="tag-方法">方法</h3>
-      
-        <ul class="tag-preview">
-          <li>
-            <a href="/2019/01/14/vue计算属性和方法的区别/">vue计算属性和方法的区别</a>
-          </li>
-        </ul>
-        
-    </div>
+      <div class="section-list-item">
+        <a href="/2018/11/14/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E6%B5%8B%E8%AF%95%E6%96%87%E7%AB%A0/" class="archive-title">我的第一篇测试文章</a>
+        <p class="archive-date">11-14</p>
+      </div>
     
+  </div>
+</section>
+  
 </main>
 
 <script>
   (function () {
-    var url = 'http://zhgv.cn/tags/index.html'
-    $('#article-banner').geopattern(url)
-    $('.header').removeClass('fixed-header')
-
-    var tag = location.hash.replace('#', '')
-    if (tag) {
-      var tagId = "#tag-" + tag;
-      $("html, body").animate({
-        scrollTop: $(tagId).offset().top 
-      }, 400)
-    }
+    var url = 'http://zhgv.cn/tags/方法/index.html';
+    $('#article-banner').geopattern(url);
+    $('.header').removeClass('fixed-header');
   })();
 </script>
     <div class="scroll-top">
