@@ -536,6 +536,10 @@ h2.article-head {
   border-radius: 2px;
   white-space: nowrap;
 }
+.markdown-content strong,
+.article-summary strong {
+  color: #fd5e53;
+}
 .markdown-content h1,
 .article-summary h1 {
   font-size: 1.8em;
