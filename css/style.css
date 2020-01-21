@@ -539,6 +539,7 @@ h2.article-head {
 .markdown-content strong,
 .article-summary strong {
   color: #e96900;
+  background-color: #f0efef;
 }
 .markdown-content h1,
 .article-summary h1 {
